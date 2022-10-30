@@ -76,7 +76,7 @@ onMounted(() => {
 
     <a
       href="https://github.com/nulloneguy/vue-colors"
-      class="absolute top-5 right-7 bg-dark-300 rounded-100"
+      class="absolute top-10 right-7 bg-dark-300 rounded-100 z-10"
     >
       <div class="text-5xl bg-light-300" i="carbon-logo-github" />
     </a>
@@ -84,13 +84,13 @@ onMounted(() => {
     <ul class="grid grid-cols-5 h-full text-light-300">
       <li
         v-for="(color, index) in state.colors"
-        class="flex flex-col items-center justify-center h-full cursor-pointer"
+        class="flex flex-col items-center justify-center h-full cursor-pointer drop-shadow-2xl hover:scale-110 hover:z-1 ease-out duration-10"
         :style="{ background: color.hexCode }"
         :key="index"
         @click="updateColor(index, color.locked)"
       >
         <button
-          class="p-4 bg-dark-400 rounded-xl"
+          class="p-4 bg-dark-400 rounded-xl drop-shadow-xl"
           @click="lockColor(index)"
           @click.stop
         >
@@ -98,17 +98,19 @@ onMounted(() => {
           <div class="text-7xl" i="carbon-unlocked" v-else />
         </button>
         <div
-          class="p3 text-xl mt-2 bg-dark-300 rounded-xl"
+          class="p3 text-xl mt-2 bg-dark-300 rounded-xl drop-shadow-xl"
           @click="copyToClipboard(color.hexCode)"
           @click.stop
         >
           {{ color.hexCode }}
         </div>
+        <p class="text-ligh-300 font-bold text-xl mt-5">Light text</p>
+        <p class="text-dark-700 font-bold text-xl">Dark text</p>
       </li>
     </ul>
     <div
       v-if="countLocked"
-      class="absolute bottom-0 w-full p6 bg-dark-300 text-light-300 font-bold text-center flex items-center justify-center"
+      class="absolute bottom-0 w-full p6 bg-dark-300 text-light-300 font-bold text-center flex items-center justify-center z-5"
     >
       You have generated a color scheme. Do you want to copy it?
       <button
