@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 
 const state = reactive({
   colors: [],
@@ -41,6 +41,10 @@ function toggleNotifyActive() {
   notifyActive.value = true;
   setTimeout(() => (notifyActive.value = false), 2000);
 }
+
+const countLocked = computed(() => {
+  return state.colors.filter((v) => v.locked == true).length >= 5;
+});
 
 onMounted(() => {
   for (let i = 0; i < 5; i += 1) {
@@ -98,6 +102,7 @@ onMounted(() => {
       </li>
     </ul>
     <div
+      v-if="countLocked"
       class="absolute bottom-0 w-full p6 bg-dark-300 text-light-300 font-bold text-center flex items-center justify-center"
     >
       You have generated a color scheme. Do you want to copy it?
