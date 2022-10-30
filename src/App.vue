@@ -15,6 +15,13 @@ function updateColor(index, isLocked) {
   }
 }
 
+function updateAllColors() {
+  state.colors = []; // reset colors
+  for (let i = 0; i < 5; i += 1) {
+    state.colors.push({ hexCode: generateColor(), locked: false });
+  }
+}
+
 function lockColor(index) {
   state.colors[index].locked = !state.colors[index].locked;
   localStorage.setItem("colors", JSON.stringify(state.colors));
@@ -47,9 +54,7 @@ const countLocked = computed(() => {
 });
 
 onMounted(() => {
-  for (let i = 0; i < 5; i += 1) {
-    state.colors.push({ hexCode: generateColor(), locked: false });
-  }
+  updateAllColors();
   if (localStorage.getItem("colors")) {
     state.colors = JSON.parse(localStorage.getItem("colors"));
   }
@@ -60,7 +65,7 @@ onMounted(() => {
   <main class="h-full">
     <p
       v-if="notifyActive"
-      class="bg-dark-200 text-light-300 p4 text-center text-3xl font-bold absolute w-full"
+      class="bg-dark-200 text-light-300 p4 text-center text-3xl font-bold absolute w-full z-5"
     >
       Color
       <span class="p1" :style="{ backgroundColor: activeColor }">{{
