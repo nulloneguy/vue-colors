@@ -80,6 +80,13 @@ onMounted(() => {
     >
       <div class="text-5xl bg-light-300" i="carbon-logo-github" />
     </a>
+    <div
+      class="absolute top-10 right-25 bg-blue-500 hover:bg-blue-600 text-light-300 font-bold uppercase rounded-100 p-4 px-7 flex cursor-pointer drop-shadow-xl z-10"
+      @click="updateAllColors()"
+    >
+      <div class="text-xl mr-3" i="carbon-reset" />
+      Update all colors
+    </div>
 
     <ul class="grid grid-cols-5 h-full text-light-300">
       <li
