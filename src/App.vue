@@ -65,7 +65,7 @@ onMounted(() => {
   <main class="h-full">
     <p
       v-if="notifyActive"
-      class="bg-dark-200 text-light-300 p4 text-center text-3xl font-bold absolute w-full z-5"
+      class="bg-dark-300 text-light-300 p4 text-center text-3xl font-bold absolute w-full z-5"
     >
       Color
       <span class="p1" :style="{ backgroundColor: activeColor }">{{
@@ -97,7 +97,7 @@ onMounted(() => {
         @click="updateColor(index, color.locked)"
       >
         <button
-          class="p-4 bg-dark-400 rounded-xl drop-shadow-xl"
+          class="p-4 bg-dark-400 hover:bg-dark-100 hover:scale-105 ease-out rounded-xl drop-shadow-xl"
           @click="lockColor(index)"
           @click.stop
         >
@@ -105,11 +105,12 @@ onMounted(() => {
           <div class="text-7xl" i="carbon-unlocked" v-else />
         </button>
         <div
-          class="p3 text-xl mt-2 bg-dark-300 rounded-xl drop-shadow-xl"
+          class="p3 text-xl mt-4 bg-dark-300 hover:bg-dark-100 rounded-xl drop-shadow-xl flex items-center"
           @click="copyToClipboard(color.hexCode)"
           @click.stop
         >
           {{ color.hexCode }}
+          <div class="ml-2" i="carbon-copy" />
         </div>
         <p class="text-ligh-300 font-bold text-xl mt-5">Light text</p>
         <p class="text-dark-700 font-bold text-xl">Dark text</p>
@@ -121,7 +122,7 @@ onMounted(() => {
     >
       You have generated a color scheme. Do you want to copy it?
       <button
-        class="py-2 px-6 ml-5 bg-blue-400 rounded-xl"
+        class="py-2 px-6 ml-5 bg-blue-500 hover:bg-blue-600 rounded-xl"
         @click="copyToClipboard(getAllColorCodes())"
       >
         Copy
